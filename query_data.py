@@ -20,15 +20,18 @@ Answer the question based on the above context: {question}
 
 
 def main():
+    # set parameters
+    USE_LM_STUDIO = True
+
     # Create CLI.
     parser = argparse.ArgumentParser()
     parser.add_argument("query_text", type=str, help="The query text.")
     args = parser.parse_args()
     query_text = args.query_text
-    query_rag(query_text)
+    query_rag(query_text, USE_LM_STUDIO)
 
 
-def query_rag(query_text: str):
+def query_rag(query_text: str, use_lm_studio: bool):
     # Prepare the DB.
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
@@ -41,8 +44,19 @@ def query_rag(query_text: str):
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
 
-    model = OllamaLLM(model="llama3.2:1b")
+    if use_lm_studio:
+        from langchain_openai import ChatOpenAI
+        model = ChatOpenAI(
+            model="lmstudio",
+            openai_api_base="http://localhost:1234/v1",
+            openai_api_key="lm-studio",
+        )
+    else:
+        model = OllamaLLM(model="llama3.2:3b")
+    
+    ### hier geschieht die Magie
     response_text = model.invoke(prompt)
+    ####################################
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
