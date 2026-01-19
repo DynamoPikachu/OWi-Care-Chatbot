@@ -2,8 +2,7 @@ name: test-env
 channels:
   - conda-forge
 dependencies:
-  - python>=3.5
-  - anaconda
+  - python=3.11
   - pip
   - pip:
     - -r file:requirements.txt
