@@ -52,6 +52,22 @@ def add_to_chroma(chunks: list[Document]):
 
     # Calculate Page IDs.
     chunks_with_ids = calculate_chunk_ids(chunks)
+    cleaned_chunks = []
+    skipped_empty = 0
+    for chunk in chunks_with_ids:
+        content = chunk.page_content
+        if content is None:
+            skipped_empty += 1
+            continue
+        if not isinstance(content, str):
+            content = str(content)
+        if not content.strip():
+            skipped_empty += 1
+            continue
+        chunk.page_content = content
+        cleaned_chunks.append(chunk)
+    if skipped_empty:
+        print(f"⚠️ Skipped empty chunks: {skipped_empty}")
 
     # Add or Update the documents.
     existing_items = db.get(include=[])  # IDs are always included by default
@@ -60,7 +76,7 @@ def add_to_chroma(chunks: list[Document]):
 
     # Only add documents that don't exist in the DB.
     new_chunks = []
-    for chunk in chunks_with_ids:
+    for chunk in cleaned_chunks:
         if chunk.metadata["id"] not in existing_ids:
             new_chunks.append(chunk)
 

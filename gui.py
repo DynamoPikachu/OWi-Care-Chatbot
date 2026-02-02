@@ -1,6 +1,5 @@
 import time
 import tkinter as tk
-from tkinter import ttk
 import subprocess
 import threading
 import re
@@ -17,48 +16,131 @@ class RAGGui(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("RAG Chat")
-        self.geometry("750x600")
+        self.title("Ask OWi")
+        self.geometry("430x760")
+        self.minsize(360, 640)
+
+        self.logo_img = "icons/logo.png"
+        self.avatar_img = "icons/logo.png"
+        self.cam_img = None
+        self.send_img = None
+        self.typing_frames_raw = []
+        self.typing_frames = []
+        self.typing_frame_index = 0
+        self.typing_job = None
+        self.typing_label = None
+        self.typing_image_id = None
+        self.typing_widget = None
+        self._load_images()
 
         self._build_ui()
 
     def _build_ui(self):
-        # Chat output
-        self.chat = tk.Text(self, wrap=tk.WORD, state=tk.DISABLED)
-        self.chat.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        self.configure(bg="#f6f4f1")
 
-        # Input frame
-        input_frame = ttk.Frame(self)
-        input_frame.pack(fill=tk.X, padx=10, pady=5)
+        header = tk.Frame(self, bg="#f6f4f1")
+        header.pack(fill=tk.X, pady=(18, 8))
 
-        self.query_entry = ttk.Entry(input_frame)
-        self.query_entry.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        if self.logo_img:
+            logo_label = tk.Label(header, image=self.logo_img, bg="#f6f4f1")
+            logo_label.pack()
+        else:
+            self._header_fallback_logo(header)
+
+        name = tk.Label(
+            header,
+            text="Ask OWi",
+            font=("Segoe UI", 18, "bold"),
+            fg="#5b5a56",
+            bg="#f6f4f1",
+        )
+        name.pack(pady=(8, 0))
+
+        status = tk.Label(
+            header,
+            text="Online",
+            font=("Segoe UI", 10),
+            fg="#8c8a86",
+            bg="#f6f4f1",
+        )
+        status.pack()
+
+        time_label = tk.Label(
+            header,
+            text=self._format_time(),
+            font=("Segoe UI", 9),
+            fg="#9f9c97",
+            bg="#f6f4f1",
+        )
+        time_label.pack(pady=(10, 0))
+
+        # Messages area (scrollable)
+        self._build_messages_area()
+
+        # Input area
+        input_wrap = tk.Frame(self, bg="#f6f4f1")
+        input_wrap.pack(fill=tk.X, padx=16, pady=(6, 14))
+
+        cam_btn = tk.Button(
+            input_wrap,
+            text="Cam" if not self.cam_img else "",
+            image=self.cam_img if self.cam_img else None,
+            font=("Segoe UI", 9, "bold"),
+            fg="#b7b4ae",
+            bg="#efede9",
+            activebackground="#e5e2dc",
+            bd=0,
+            relief=tk.FLAT,
+            width=36,
+            height=36,
+        )
+        cam_btn.pack(side=tk.LEFT, padx=(0, 8))
+
+        entry_frame = tk.Frame(input_wrap, bg="#efede9")
+        entry_frame.pack(side=tk.LEFT, fill=tk.X, expand=True)
+
+        self.query_entry = tk.Entry(
+            entry_frame,
+            font=("Segoe UI", 11),
+            fg="#a6a39d",
+            bg="#efede9",
+            relief=tk.FLAT,
+            insertbackground="#6a6762",
+        )
+        self.query_entry.pack(fill=tk.BOTH, padx=12, pady=10)
+        self.query_entry.insert(0, "Enter your message...")
+        self.query_entry.bind("<FocusIn>", self._clear_placeholder)
+        self.query_entry.bind("<FocusOut>", self._restore_placeholder)
         self.query_entry.bind("<Return>", self.run_query)
 
-        self.send_button = ttk.Button(
-            input_frame, text="Senden", command=self.run_query
+        self.send_button = tk.Button(
+            input_wrap,
+            text=">" if not self.send_img else "",
+            image=self.send_img if self.send_img else None,
+            font=("Segoe UI", 12, "bold"),
+            fg="#b7b4ae",
+            bg="#efede9",
+            activebackground="#e5e2dc",
+            bd=0,
+            relief=tk.FLAT,
+            width=36,
+            height=36,
+            command=self.run_query,
         )
-        self.send_button.pack(side=tk.LEFT, padx=5)
+        self.send_button.pack(side=tk.LEFT, padx=(8, 0))
 
-        # Loading indicator
-        self.progress = ttk.Progressbar(
-            self, mode="indeterminate"
-        )
-        self.progress.pack(fill=tk.X, padx=10, pady=(0, 10))
-        self.progress.pack_forget()
+        self.after(0, self._prepare_typing_frames_from_entry)
 
     def run_query(self, event=None):
         global start_time
         start_time = time.time()
         query = self.query_entry.get().strip()
-        if not query:
+        if not query or query == "Enter your message...":
             return
 
         self.query_entry.delete(0, tk.END)
-        self._append_chat(f"🧑 Du:\n{query}\n\n")
-
-        self.progress.pack(fill=tk.X, padx=10, pady=(0, 10))
-        self.progress.start()
+        self._add_message(query, side="right")
+        self._show_typing()
 
         self.send_button.config(state=tk.DISABLED)
 
@@ -73,9 +155,10 @@ class RAGGui(tk.Tk):
                 [PYTHON_EXECUTABLE, QUERY_SCRIPT, query],
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
             )
-            output = result.stdout.encode("latin1", errors="ignore").decode("utf-8", errors="ignore") \
-                     + result.stderr.encode("latin1", errors="ignore").decode("utf-8", errors="ignore")
+            output = (result.stdout or "") + (result.stderr or "")
 
             response, sources = self._parse_output(output)
 
@@ -113,27 +196,277 @@ class RAGGui(tk.Tk):
         return response, sources
 
     def _display_response(self, response, sources):
-        self.progress.stop()
-        self.progress.pack_forget()
+        self._hide_typing()
         self.send_button.config(state=tk.NORMAL)
 
-        self._append_chat("🤖 Assistant:\n")
-        self._append_chat(response + "\n")
+        self._add_message(response, side="left", sources=sources)
 
-        if sources:
-            self._append_chat(
-                f"\n(Quellen: {', '.join(sorted(sources))})\n"
+    def _build_messages_area(self):
+        container = tk.Frame(self, bg="#f6f4f1")
+        container.pack(fill=tk.BOTH, expand=True, padx=10, pady=(10, 0))
+
+        self.canvas = tk.Canvas(container, bg="#f6f4f1", highlightthickness=0)
+        self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar = tk.Scrollbar(container, command=self.canvas.yview)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.canvas.configure(yscrollcommand=scrollbar.set)
+
+        self.messages_frame = tk.Frame(self.canvas, bg="#f6f4f1")
+        self.canvas.create_window((0, 0), window=self.messages_frame, anchor="nw")
+
+        self.messages_frame.bind(
+            "<Configure>",
+            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")),
+        )
+
+        self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
+
+    def _add_message(self, text, side="left", sources=None):
+        outer = tk.Frame(self.messages_frame, bg="#f6f4f1")
+        outer.pack(fill=tk.X, pady=6)
+
+        if side == "left":
+            row = tk.Frame(outer, bg="#f6f4f1")
+            row.pack(anchor="w")
+
+            if self.avatar_img:
+                avatar = tk.Label(row, image=self.avatar_img, bg="#f6f4f1")
+                avatar.pack(side=tk.LEFT, padx=(6, 8))
+            else:
+                self._avatar_fallback(row)
+
+            bubble = self._rounded_bubble(
+                row,
+                text=text,
+                wraplength=260,
+                font=("Segoe UI", 11),
+                fg="#5f5b55",
+                bg="#e9e4d8",
+            )
+            bubble.pack(side=tk.LEFT, anchor="w")
+
+            if sources:
+                src_label = tk.Label(
+                    outer,
+                    text="Quellen: " + ", ".join(sorted(sources)),
+                    font=("Segoe UI", 8),
+                    fg="#9f9c97",
+                    bg="#f6f4f1",
+                )
+                src_label.pack(anchor="w", padx=56, pady=(4, 0))
+        else:
+            row = tk.Frame(outer, bg="#f6f4f1")
+            row.pack(fill=tk.X, anchor="e")
+
+            bubble = self._rounded_bubble(
+                row,
+                text=text,
+                wraplength=280,
+                font=("Segoe UI", 11),
+                fg="#5f5b55",
+                bg="#e9e4d8",
+            )
+            bubble.pack(side=tk.RIGHT, padx=(50, 12))
+
+        self.canvas.update_idletasks()
+        self.canvas.yview_moveto(1.0)
+
+    def _show_typing(self):
+        self.typing_widget = tk.Frame(self.messages_frame, bg="#f6f4f1")
+        self.typing_widget.pack(fill=tk.X, pady=6)
+
+        row = tk.Frame(self.typing_widget, bg="#f6f4f1")
+        row.pack(anchor="w")
+
+        if self.avatar_img:
+            avatar = tk.Label(row, image=self.avatar_img, bg="#f6f4f1")
+            avatar.pack(side=tk.LEFT, padx=(6, 8))
+        else:
+            self._avatar_fallback(row)
+
+        if self.typing_frames:
+            self.typing_frame_index = 0
+            bubble, image_id = self._rounded_image_bubble(
+                row,
+                image=self.typing_frames[0],
+                bg="#e9e4d8",
+            )
+            bubble.pack(side=tk.LEFT, anchor="w")
+            self.typing_label = bubble
+            self.typing_image_id = image_id
+            self._animate_typing()
+        else:
+            bubble = self._rounded_bubble(
+                row,
+                text="...",
+                wraplength=80,
+                font=("Segoe UI", 14, "bold"),
+                fg="#7b7873",
+                bg="#e9e4d8",
+            )
+            bubble.pack(side=tk.LEFT, anchor="w")
+
+        self.canvas.update_idletasks()
+        self.canvas.yview_moveto(1.0)
+
+    def _hide_typing(self):
+        if self.typing_job:
+            self.after_cancel(self.typing_job)
+            self.typing_job = None
+        self.typing_label = None
+        self.typing_image_id = None
+        if self.typing_widget:
+            self.typing_widget.destroy()
+            self.typing_widget = None
+
+    def _on_mousewheel(self, event):
+        self.canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+    def _format_time(self):
+        return time.strftime("%b %d, %I:%M %p").lower()
+
+    def _rounded_bubble(self, parent, text, wraplength, font, fg, bg):
+        pad_x = 14
+        pad_y = 10
+        radius = 16
+
+        canvas = tk.Canvas(parent, bg=parent.cget("bg"), highlightthickness=0)
+        text_id = canvas.create_text(
+            pad_x,
+            pad_y,
+            text=text,
+            font=font,
+            fill=fg,
+            anchor="nw",
+            width=wraplength,
+        )
+        bbox = canvas.bbox(text_id)
+        text_w = bbox[2] - bbox[0]
+        text_h = bbox[3] - bbox[1]
+        width = text_w + pad_x * 2
+        height = text_h + pad_y * 2
+
+        self._rounded_rect(canvas, 0, 0, width, height, radius, fill=bg, outline=bg)
+        canvas.tag_raise(text_id)
+        canvas.config(width=width, height=height)
+        return canvas
+
+    def _rounded_rect(self, canvas, x1, y1, x2, y2, r, fill, outline):
+        r = max(2, min(r, (x2 - x1) // 2, (y2 - y1) // 2))
+        canvas.create_rectangle(x1 + r, y1, x2 - r, y2, fill=fill, outline=outline)
+        canvas.create_rectangle(x1, y1 + r, x2, y2 - r, fill=fill, outline=outline)
+        canvas.create_oval(x1, y1, x1 + 2 * r, y1 + 2 * r, fill=fill, outline=outline)
+        canvas.create_oval(x2 - 2 * r, y1, x2, y1 + 2 * r, fill=fill, outline=outline)
+        canvas.create_oval(x1, y2 - 2 * r, x1 + 2 * r, y2, fill=fill, outline=outline)
+        canvas.create_oval(x2 - 2 * r, y2 - 2 * r, x2, y2, fill=fill, outline=outline)
+
+    def _rounded_image_bubble(self, parent, image, bg):
+        pad = 10
+        radius = 16
+        width = image.width() + pad * 2
+        height = image.height() + pad * 2
+
+        canvas = tk.Canvas(parent, bg=parent.cget("bg"), highlightthickness=0)
+        self._rounded_rect(canvas, 0, 0, width, height, radius, fill=bg, outline=bg)
+        image_id = canvas.create_image(width // 2, height // 2, image=image)
+        canvas.config(width=width, height=height)
+        return canvas, image_id
+
+    def _load_gif_frames(self, path):
+        frames = []
+        idx = 0
+        while True:
+            try:
+                frame = tk.PhotoImage(file=path, format=f"gif -index {idx}")
+            except tk.TclError:
+                break
+            frames.append(frame)
+            idx += 1
+        return frames
+
+    def _scale_gif_frames(self, frames, target_height):
+        if not frames:
+            return []
+        first = frames[0]
+        factor = max(1, int(round(first.height() / float(target_height))))
+        if factor <= 1:
+            return frames
+        return [frame.subsample(factor, factor) for frame in frames]
+
+    def _prepare_typing_frames_from_entry(self):
+        if not self.typing_frames_raw:
+            return
+        self.update_idletasks()
+        target_height = max(16, int((self.query_entry.winfo_height() - 12) * 3))
+        self.typing_frames = self._scale_gif_frames(
+            self.typing_frames_raw,
+            target_height,
+        )
+
+    def _animate_typing(self):
+        if not self.typing_label or not self.typing_frames:
+            return
+        self.typing_frame_index = (self.typing_frame_index + 1) % len(self.typing_frames)
+        self.typing_label.itemconfig(
+            self.typing_image_id,
+            image=self.typing_frames[self.typing_frame_index],
+        )
+        self.typing_job = self.after(120, self._animate_typing)
+
+    def _scale_image(self, img, target):
+        factor = max(1, int(round(img.width() / float(target))))
+        return img.subsample(factor, factor)
+
+    def _load_images(self):
+        logo_path = "logo.png"
+        if os.path.exists(os.path.join("icons", "logo.png")):
+            logo_path = os.path.join("icons", "logo.png")
+        if os.path.exists(logo_path):
+            try:
+                img = tk.PhotoImage(file=logo_path)
+                self.logo_img = self._scale_image(img, 120)
+                self.avatar_img = self._scale_image(img, 32)
+            except tk.TclError:
+                self.logo_img = None
+                self.avatar_img = None
+        if os.path.exists(os.path.join("icons", "cam.png")):
+            try:
+                img = tk.PhotoImage(file=os.path.join("icons", "cam.png"))
+                self.cam_img = self._scale_image(img, 24)
+            except tk.TclError:
+                self.cam_img = None
+        if os.path.exists(os.path.join("icons", "sent.png")):
+            try:
+                img = tk.PhotoImage(file=os.path.join("icons", "sent.png"))
+                self.send_img = self._scale_image(img, 24)
+            except tk.TclError:
+                self.send_img = None
+        if os.path.exists(os.path.join("icons", "loader_dots.gif")):
+            self.typing_frames_raw = self._load_gif_frames(
+                os.path.join("icons", "loader_dots.gif")
             )
 
-        global start_time
-        self._append_chat("\n" + f"Dauer: {int(time.time() - start_time)}s")
-        self._append_chat("\n" + "─" * 60 + "\n\n")
+    def _header_fallback_logo(self, parent):
+        canvas = tk.Canvas(parent, width=96, height=96, bg="#f6f4f1", highlightthickness=0)
+        canvas.pack()
+        canvas.create_oval(6, 6, 90, 90, fill="#8aa7e6", outline="#8aa7e6")
+        canvas.create_text(48, 48, text="OW", fill="white", font=("Segoe UI", 18, "bold"))
 
-    def _append_chat(self, text):
-        self.chat.config(state=tk.NORMAL)
-        self.chat.insert(tk.END, text)
-        self.chat.see(tk.END)
-        self.chat.config(state=tk.DISABLED)
+    def _avatar_fallback(self, parent):
+        canvas = tk.Canvas(parent, width=32, height=32, bg="#f6f4f1", highlightthickness=0)
+        canvas.pack(side=tk.LEFT, padx=(6, 8))
+        canvas.create_oval(2, 2, 30, 30, fill="#8aa7e6", outline="#8aa7e6")
+        canvas.create_text(16, 16, text="O", fill="white", font=("Segoe UI", 10, "bold"))
+
+    def _clear_placeholder(self, event):
+        if self.query_entry.get() == "Enter your message...":
+            self.query_entry.delete(0, tk.END)
+            self.query_entry.config(fg="#6a6762")
+
+    def _restore_placeholder(self, event):
+        if not self.query_entry.get().strip():
+            self.query_entry.insert(0, "Enter your message...")
+            self.query_entry.config(fg="#a6a39d")
 
 
 if __name__ == "__main__":
