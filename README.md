@@ -10,5 +10,6 @@
 ### Initialise database ```bash python populate_database.py ```
 ### Use GUI via: ```bash python gui.py ```
 ### Or call script directly via: ```bash python query_data.py "Your prompt here" ```
+### Oder mehrere Prompts aus Datei: ```bash python query_data.py --input-file prompts.txt --output-file output.txt ```
 ## Credits
 This project is based on the original **rag-tutorial-v2** repository by pixegami: https://github.com/pixegami/rag-tutorial-v2 The codebase has been extended and adapted (GUI, updated LangChain imports, usability improvements).                                                                                                                                                                                                                                                                                                                                                                                       
