@@ -14,7 +14,7 @@ pip install pyinstaller
 
 echo "🔨 Baue standalone Executable..."
 
-pyinstaller --onedir \
+python -m PyInstaller --onedir \
     --name "AskOWi" \
     --windowed \
     --add-data "icons:icons" \
