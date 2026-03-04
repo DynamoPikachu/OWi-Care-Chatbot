@@ -39,6 +39,7 @@ Aufgabe: Beantworte die individuellen Frage oder gehe auf die Probleme der Elter
 
 Visualisierung bzw. Ausgabeformat: Fließtext mit hilfreichen, nachvollziehbaren Anweisungen und Empfehlungen.
 Antworte wenn möglich in 2-3 Sätzen.
+Antworte wenn nicht anders gefordert auf Deutsch.
 """.strip()
 
 
