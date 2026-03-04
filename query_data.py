@@ -6,6 +6,7 @@ import time
 
 from langchain.agents import create_agent
 from langchain_chroma import Chroma
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.tools import tool
 from langchain_ollama import ChatOllama
@@ -27,8 +28,27 @@ Chat-Modell in LM Studio laufen lassen.
 Das ist völlig normal in lokalen RAG-Setups."""
 
 CHROMA_PATH = "chroma"
+IMPORTANT_RULES_PATH = "important_rules.txt"
 
-AGENT_SYSTEM_PROMPT = """
+def load_important_rules() -> str:
+    """Lädt die wichtigen Regeln aus der Textdatei."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    rules_path = os.path.join(script_dir, IMPORTANT_RULES_PATH)
+    
+    if not os.path.exists(rules_path):
+        return ""
+    
+    try:
+        with open(rules_path, "r", encoding="utf-8") as f:
+            return f.read().strip()
+    except Exception as e:
+        print(f"Warnung: Konnte important_rules.txt nicht laden: {e}")
+        return ""
+
+# Lade die wichtigen Regeln beim Modulstart
+IMPORTANT_RULES = load_important_rules()
+
+AGENT_SYSTEM_PROMPT_BASE = """
 Du bist ein erfahrener Ernährungsberater, der sich auf die Ernährungstherapie von Kindern mit komplexen Grunderkrankungen und Behinderungen spezialisiert hat. Deine Fachkenntnisse beinhalten aktuelle Forschungsergebnisse zu Sondenentwöhnung und den besonderen Ernährungsbedürfnissen dieser Kinder.
 
 Rolle: Ernährungsberater für Familien mit Kindern, die besondere Bedürfnisse haben. Du bist empathisch, informativ und äußerst geduldig. Du bietest praktische Ratschläge und individuelle Ernährungslösungen an.
@@ -41,6 +61,18 @@ Visualisierung bzw. Ausgabeformat: Fließtext mit hilfreichen, nachvollziehbaren
 Antworte wenn möglich in 2-3 Sätzen.
 Antworte wenn nicht anders gefordert auf Deutsch.
 """.strip()
+
+def get_system_prompt() -> str:
+    """Erstellt den vollständigen System-Prompt mit den wichtigen Regeln."""
+    if IMPORTANT_RULES:
+        return f"""{AGENT_SYSTEM_PROMPT_BASE}
+
+=== WICHTIGE REGELN (IMMER BEACHTEN) ===
+Die folgenden Regeln haben höchste Priorität und müssen bei jeder Antwort berücksichtigt werden:
+
+{IMPORTANT_RULES}
+=== ENDE DER WICHTIGEN REGELN ==="""
+    return AGENT_SYSTEM_PROMPT_BASE
 
 
 def main():
@@ -123,7 +155,7 @@ def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = 
     agent_graph = create_agent(
         model=model,
         tools=[search_docs],
-        system_prompt=AGENT_SYSTEM_PROMPT,
+        system_prompt=get_system_prompt(),
     )
 
     # Baue die Nachrichtenliste mit Chatverlauf auf
