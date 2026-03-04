@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 import re
 import time
@@ -58,6 +59,12 @@ def main():
         type=str,
         help="Datei, in die die Ergebnisse geschrieben werden.",
     )
+    parser.add_argument(
+        "--history",
+        type=str,
+        default="[]",
+        help="JSON-String mit dem Chatverlauf.",
+    )
     args = parser.parse_args()
 
     if args.input_file:
@@ -73,10 +80,19 @@ def main():
     if not args.query_text:
         parser.error("query_text oder --input-file ist erforderlich.")
 
-    query_rag(args.query_text, USE_LM_STUDIO)
+    # Parse chat history from JSON
+    try:
+        chat_history = json.loads(args.history)
+    except json.JSONDecodeError:
+        chat_history = []
+
+    query_rag(args.query_text, USE_LM_STUDIO, chat_history=chat_history)
 
 
-def query_rag(query_text: str, use_lm_studio: bool = True):
+def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = None):
+    if chat_history is None:
+        chat_history = []
+    
     # Prepare the DB.
     embedding_platform = "lm-studio" if use_lm_studio else "ollama"
     embedding_function = get_embedding_function(embedding_platform)
@@ -94,7 +110,7 @@ def query_rag(query_text: str, use_lm_studio: bool = True):
     if use_lm_studio:
         from langchain_openai import ChatOpenAI
         api_base = os.getenv("LMSTUDIO_API_BASE", "http://localhost:1234/v1")
-        model_name = os.getenv("LMSTUDIO_CHAT_MODEL", "lmstudio")
+        model_name = os.getenv("LMSTUDIO_CHAT_MODEL", "qwen2.5-14b-instruct")
         model = ChatOpenAI(
             model=model_name,
             openai_api_base=api_base,
@@ -109,8 +125,21 @@ def query_rag(query_text: str, use_lm_studio: bool = True):
         system_prompt=AGENT_SYSTEM_PROMPT,
     )
 
+    # Baue die Nachrichtenliste mit Chatverlauf auf
+    messages = []
+    for entry in chat_history:
+        role = entry.get("role", "")
+        content = entry.get("content", "")
+        if role == "user":
+            messages.append(HumanMessage(content=content))
+        elif role == "assistant":
+            messages.append(AIMessage(content=content))
+    
+    # Füge die aktuelle Anfrage hinzu
+    messages.append(HumanMessage(content=query_text))
+
     ### hier geschieht die Magie
-    response = agent_graph.invoke({"messages": [HumanMessage(content=query_text)]})
+    response = agent_graph.invoke({"messages": messages})
     ####################################
 
     response_text = ""

@@ -5,6 +5,7 @@ import threading
 import re
 import os
 import sys
+import json
 
 
 QUERY_SCRIPT = "query_data.py"
@@ -19,6 +20,8 @@ class RAGGui(tk.Tk):
         self.title("Ask OWi")
         self.geometry("430x760")
         self.minsize(360, 640)
+
+        self.chat_history = []  # Speichert den Chatverlauf als Liste von {"role": ..., "content": ...}
 
         self.logo_img = "icons/logo.png"
         self.avatar_img = "icons/logo.png"
@@ -140,6 +143,10 @@ class RAGGui(tk.Tk):
 
         self.query_entry.delete(0, tk.END)
         self._add_message(query, side="right")
+        
+        # Füge User-Nachricht zum Chatverlauf hinzu
+        self.chat_history.append({"role": "user", "content": query})
+        
         self._show_typing()
 
         self.send_button.config(state=tk.DISABLED)
@@ -151,8 +158,10 @@ class RAGGui(tk.Tk):
 
     def _execute_query(self, query):
         try:
+            # Übergebe den Chatverlauf als JSON-String via --history Argument
+            history_json = json.dumps(self.chat_history[:-1], ensure_ascii=False)  # Ohne die aktuelle Nachricht
             result = subprocess.run(
-                [PYTHON_EXECUTABLE, QUERY_SCRIPT, query],
+                [PYTHON_EXECUTABLE, QUERY_SCRIPT, query, "--history", history_json],
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
@@ -183,21 +192,35 @@ class RAGGui(tk.Tk):
             response = response_match.group(1).strip()
 
         # --- Sources extrahieren ---
+        # Suche nach Sources: [...] im Output
         sources_match = re.search(
-            r"Sources:\s*\[(.*?)\]",
+            r"Sources:\s*\[([^\]]*)\]",
             output,
             re.DOTALL | re.IGNORECASE,
         )
 
         if sources_match:
             raw_sources = sources_match.group(1)
-            sources = sorted(set(re.findall(r"([^\\/]+\.pdf)", raw_sources)))
+            # Finde alle Einträge zwischen Anführungszeichen
+            all_entries = re.findall(r"'([^']+)'", raw_sources)
+            # Extrahiere nur den Dateinamen ohne Pfad
+            for entry in all_entries:
+                # Entferne Pfad (alles vor dem letzten / oder \)
+                filename = entry.split("/")[-1].split("\\")[-1]
+                # Entferne Chunk-IDs (z.B. :1:2 am Ende)
+                filename = filename.split(":")[0]
+                if filename.lower().endswith(".pdf"):
+                    sources.append(filename)
+            sources = sorted(set(sources))
 
         return response, sources
 
     def _display_response(self, response, sources):
         self._hide_typing()
         self.send_button.config(state=tk.NORMAL)
+
+        # Füge Assistant-Antwort zum Chatverlauf hinzu
+        self.chat_history.append({"role": "assistant", "content": response})
 
         self._add_message(response, side="left", sources=sources)
 
@@ -252,21 +275,24 @@ class RAGGui(tk.Tk):
                     font=("Segoe UI", 8),
                     fg="#9f9c97",
                     bg="#f6f4f1",
+                    wraplength=300,
+                    justify=tk.LEFT,
                 )
                 src_label.pack(anchor="w", padx=56, pady=(4, 0))
         else:
+            # Rechte Sprechblase - am rechten Rand positioniert
             row = tk.Frame(outer, bg="#f6f4f1")
-            row.pack(fill=tk.X, anchor="e")
+            row.pack(anchor="e", fill=tk.X)
 
             bubble = self._rounded_bubble(
                 row,
                 text=text,
-                wraplength=280,
+                wraplength=260,
                 font=("Segoe UI", 11),
-                fg="#5f5b55",
-                bg="#e9e4d8",
+                fg="#ffffff",
+                bg="#7a9ec9",
             )
-            bubble.pack(side=tk.RIGHT, padx=(50, 12))
+            bubble.pack(side=tk.RIGHT, anchor="e", padx=(50, 6))
 
         self.canvas.update_idletasks()
         self.canvas.yview_moveto(1.0)
@@ -325,7 +351,26 @@ class RAGGui(tk.Tk):
     def _format_time(self):
         return time.strftime("%b %d, %I:%M %p").lower()
 
+    def _strip_markdown(self, text: str) -> str:
+        """Entfernt Markdown-Formatierung aus dem Text."""
+        # Fett: **text** oder __text__
+        text = re.sub(r'\*\*(.+?)\*\*', r'\1', text)
+        text = re.sub(r'__(.+?)__', r'\1', text)
+        # Kursiv: *text* oder _text_
+        text = re.sub(r'\*(.+?)\*', r'\1', text)
+        text = re.sub(r'(?<!\w)_(.+?)_(?!\w)', r'\1', text)
+        # Code: `text`
+        text = re.sub(r'`(.+?)`', r'\1', text)
+        # Überschriften: # text
+        text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
+        # Links: [text](url)
+        text = re.sub(r'\[(.+?)\]\(.+?\)', r'\1', text)
+        return text
+
     def _rounded_bubble(self, parent, text, wraplength, font, fg, bg):
+        # Entferne Markdown-Formatierung
+        text = self._strip_markdown(text)
+        
         pad_x = 14
         pad_y = 10
         radius = 16
