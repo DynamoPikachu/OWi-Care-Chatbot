@@ -201,16 +201,20 @@ class RAGGui(tk.Tk):
 
         if sources_match:
             raw_sources = sources_match.group(1)
-            # Finde alle Einträge zwischen Anführungszeichen
-            all_entries = re.findall(r"'([^']+)'", raw_sources)
-            # Extrahiere nur den Dateinamen ohne Pfad
+            # Finde alle Einträge zwischen einfachen oder doppelten Anführungszeichen
+            all_entries = re.findall(r"['\"]([^'\"]+)['\"]", raw_sources)
+            
+            # Falls keine Anführungszeichen, versuche durch Komma zu splitten
+            if not all_entries and raw_sources.strip():
+                all_entries = [s.strip() for s in raw_sources.split(",") if s.strip()]
+            
+            # Extrahiere PDF-Dateinamen
             for entry in all_entries:
-                # Entferne Pfad (alles vor dem letzten / oder \)
-                filename = entry.split("/")[-1].split("\\")[-1]
-                # Entferne Chunk-IDs (z.B. :1:2 am Ende)
-                filename = filename.split(":")[0]
-                if filename.lower().endswith(".pdf"):
-                    sources.append(filename)
+                # Suche nach PDF-Dateinamen im Eintrag
+                pdf_match = re.search(r"([^/\\:]+\.pdf)", entry, re.IGNORECASE)
+                if pdf_match:
+                    sources.append(pdf_match.group(1))
+            
             sources = sorted(set(sources))
 
         return response, sources
@@ -228,21 +232,61 @@ class RAGGui(tk.Tk):
         container = tk.Frame(self, bg="#f6f4f1")
         container.pack(fill=tk.BOTH, expand=True, padx=10, pady=(10, 0))
 
-        self.canvas = tk.Canvas(container, bg="#f6f4f1", highlightthickness=0)
+        # Scrollbar erstellen (anfangs versteckt)
+        self.scrollbar = tk.Scrollbar(container)
+        
+        self.canvas = tk.Canvas(container, bg="#f6f4f1", highlightthickness=0,
+                                yscrollcommand=self._on_scroll_change)
         self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        scrollbar = tk.Scrollbar(container, command=self.canvas.yview)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        self.canvas.configure(yscrollcommand=scrollbar.set)
+        
+        self.scrollbar.config(command=self.canvas.yview)
 
         self.messages_frame = tk.Frame(self.canvas, bg="#f6f4f1")
-        self.canvas.create_window((0, 0), window=self.messages_frame, anchor="nw")
+        self.canvas_window = self.canvas.create_window((0, 0), window=self.messages_frame, anchor="nw")
+
+        # Breite des messages_frame an Canvas anpassen
+        def on_canvas_configure(event):
+            self.canvas.itemconfig(self.canvas_window, width=event.width)
+            self._update_scrollbar_visibility()
+        
+        self.canvas.bind("<Configure>", on_canvas_configure)
 
         self.messages_frame.bind(
             "<Configure>",
-            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")),
+            lambda e: self._on_messages_configure(),
         )
 
-        self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
+        # Maus-Scrollen für Linux und Windows
+        self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)  # Windows/MacOS
+        self.canvas.bind_all("<Button-4>", self._on_mousewheel)    # Linux scroll up
+        self.canvas.bind_all("<Button-5>", self._on_mousewheel)    # Linux scroll down
+
+    def _on_messages_configure(self):
+        """Wird aufgerufen wenn sich der Nachrichtenbereich ändert."""
+        self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+        self._update_scrollbar_visibility()
+
+    def _on_scroll_change(self, first, last):
+        """Callback für Scroll-Änderungen."""
+        self.scrollbar.set(first, last)
+        self._update_scrollbar_visibility()
+
+    def _update_scrollbar_visibility(self):
+        """Zeigt/versteckt die Scrollbar je nach Bedarf."""
+        # Prüfe ob Scrolling nötig ist
+        bbox = self.canvas.bbox("all")
+        if bbox:
+            content_height = bbox[3] - bbox[1]
+            canvas_height = self.canvas.winfo_height()
+            
+            if content_height > canvas_height:
+                # Scrollbar anzeigen
+                if not self.scrollbar.winfo_ismapped():
+                    self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+            else:
+                # Scrollbar verstecken
+                if self.scrollbar.winfo_ismapped():
+                    self.scrollbar.pack_forget()
 
     def _add_message(self, text, side="left", sources=None):
         outer = tk.Frame(self.messages_frame, bg="#f6f4f1")
@@ -346,7 +390,14 @@ class RAGGui(tk.Tk):
             self.typing_widget = None
 
     def _on_mousewheel(self, event):
-        self.canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+        # Linux verwendet Button-4 (hoch) und Button-5 (runter)
+        if event.num == 4:
+            self.canvas.yview_scroll(-1, "units")
+        elif event.num == 5:
+            self.canvas.yview_scroll(1, "units")
+        else:
+            # Windows/MacOS
+            self.canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
     def _format_time(self):
         return time.strftime("%b %d, %I:%M %p").lower()

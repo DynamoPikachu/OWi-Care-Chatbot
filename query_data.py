@@ -4,28 +4,12 @@ import os
 import re
 import time
 
-from langchain.agents import create_agent
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_core.messages import AIMessage, HumanMessage
-from langchain_core.tools import tool
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_ollama import ChatOllama
 
 from get_embedding_function import get_embedding_function
 
-
-# TODO vorschläge von ChatGPT umsetzen
-"""Wichtiger Praxis-Hinweis zu LM Studio + Embeddings
-
-LM Studio hat zwar OpenAI-kompatible Endpoints inkl. Embeddings
-
-, aber nicht jedes GGUF/Modell in LM Studio eignet sich sinnvoll als Embedding-Modell. In der Praxis ist oft stabiler:
-
-Embeddings in Python via sentence-transformers / transformers auf der GPU berechnen (bge-m3 / e5),
-
-Chat-Modell in LM Studio laufen lassen.
-
-Das ist völlig normal in lokalen RAG-Setups."""
 
 CHROMA_PATH = "chroma"
 IMPORTANT_RULES_PATH = "important_rules.txt"
@@ -45,75 +29,51 @@ def load_important_rules() -> str:
         print(f"Warnung: Konnte important_rules.txt nicht laden: {e}")
         return ""
 
-# Lade die wichtigen Regeln beim Modulstart
 IMPORTANT_RULES = load_important_rules()
 
-AGENT_SYSTEM_PROMPT_BASE = """
+SYSTEM_PROMPT = """
 Du bist ein erfahrener Ernährungsberater, der sich auf die Ernährungstherapie von Kindern mit komplexen Grunderkrankungen und Behinderungen spezialisiert hat. Deine Fachkenntnisse beinhalten aktuelle Forschungsergebnisse zu Sondenentwöhnung und den besonderen Ernährungsbedürfnissen dieser Kinder.
 
 Rolle: Ernährungsberater für Familien mit Kindern, die besondere Bedürfnisse haben. Du bist empathisch, informativ und äußerst geduldig. Du bietest praktische Ratschläge und individuelle Ernährungslösungen an.
 
 Zielgruppe: Eltern von Kindern mit Behinderungen, die Unterstützung bei der Ernährungstherapie und Sondenentwöhnung benötigen.
 
-Aufgabe: Beantworte die individuellen Frage oder gehe auf die Probleme der Eltern ein. Achte darauf, auf die besonderen Bedürfnisse des Kindes einzugehen und praktische Tipps zu geben. Gib keine Anweisungen oder Vorschläge die das Kind oder andere Beteiligte verletzen könnten. Benutze das `search_docs` tool um relevanten Kontext aus dem vector store zu finden bevor du eine Antwort gibst. Falls nötig, rufe das tool mehrmals auf.
+Aufgabe: Beantworte die individuellen Fragen oder gehe auf die Probleme der Eltern ein. Achte darauf, auf die besonderen Bedürfnisse des Kindes einzugehen und praktische Tipps zu geben. Gib keine Anweisungen oder Vorschläge, die das Kind oder andere Beteiligte verletzen könnten.
 
-Visualisierung bzw. Ausgabeformat: Fließtext mit hilfreichen, nachvollziehbaren Anweisungen und Empfehlungen.
-Antworte wenn möglich in 2-3 Sätzen.
-Antworte wenn nicht anders gefordert auf Deutsch.
+Ausgabeformat: Fließtext mit hilfreichen, nachvollziehbaren Anweisungen und Empfehlungen. Antworte wenn möglich in 2-3 Sätzen.
+
+Sprache: Antworte immer auf Deutsch.
 """.strip()
 
 def get_system_prompt() -> str:
-    """Erstellt den vollständigen System-Prompt mit den wichtigen Regeln."""
     if IMPORTANT_RULES:
-        return f"""{AGENT_SYSTEM_PROMPT_BASE}
+        return f"""{SYSTEM_PROMPT}
 
 === WICHTIGE REGELN (IMMER BEACHTEN) ===
-Die folgenden Regeln haben höchste Priorität und müssen bei jeder Antwort berücksichtigt werden:
-
 {IMPORTANT_RULES}
 === ENDE DER WICHTIGEN REGELN ==="""
-    return AGENT_SYSTEM_PROMPT_BASE
+    return SYSTEM_PROMPT
 
 
 def main():
-    # set parameters
     USE_LM_STUDIO = True
 
-    # Create CLI.
     parser = argparse.ArgumentParser()
     parser.add_argument("query_text", nargs="?", type=str, help="The query text.")
-    parser.add_argument(
-        "--input-file",
-        type=str,
-        help="Textdatei mit mehreren Prompts (durch Leerzeile getrennt).",
-    )
-    parser.add_argument(
-        "--output-file",
-        type=str,
-        help="Datei, in die die Ergebnisse geschrieben werden.",
-    )
-    parser.add_argument(
-        "--history",
-        type=str,
-        default="[]",
-        help="JSON-String mit dem Chatverlauf.",
-    )
+    parser.add_argument("--input-file", type=str)
+    parser.add_argument("--output-file", type=str)
+    parser.add_argument("--history", type=str, default="[]")
     args = parser.parse_args()
 
     if args.input_file:
         if not args.output_file:
             parser.error("--output-file ist erforderlich, wenn --input-file verwendet wird.")
-        process_prompt_file(
-            input_path=args.input_file,
-            output_path=args.output_file,
-            use_lm_studio=USE_LM_STUDIO,
-        )
+        process_prompt_file(args.input_file, args.output_file, USE_LM_STUDIO)
         return
 
     if not args.query_text:
         parser.error("query_text oder --input-file ist erforderlich.")
 
-    # Parse chat history from JSON
     try:
         chat_history = json.loads(args.history)
     except json.JSONDecodeError:
@@ -126,20 +86,15 @@ def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = 
     if chat_history is None:
         chat_history = []
     
-    # Prepare the DB.
     embedding_platform = "lm-studio" if use_lm_studio else "ollama"
     embedding_function = get_embedding_function(embedding_platform)
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
-    retrieved_docs = []
+    # Hole relevante Dokumente
+    docs = db.similarity_search(query_text, k=5)
+    context = "\n\n---\n\n".join(doc.page_content for doc in docs)
 
-    @tool
-    def search_docs(query: str) -> str:
-        """Search the vector store for relevant context."""
-        docs = db.similarity_search(query, k=5)
-        retrieved_docs.extend(docs)
-        return "\n\n---\n\n".join(doc.page_content for doc in docs)
-
+    # Erstelle Model
     if use_lm_studio:
         from langchain_openai import ChatOpenAI
         api_base = os.getenv("LMSTUDIO_API_BASE", "http://localhost:1234/v1")
@@ -151,15 +106,10 @@ def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = 
         )
     else:
         model = ChatOllama(model="llama3.2:3b")
-    
-    agent_graph = create_agent(
-        model=model,
-        tools=[search_docs],
-        system_prompt=get_system_prompt(),
-    )
 
-    # Baue die Nachrichtenliste mit Chatverlauf auf
-    messages = []
+    # Baue Nachrichten auf
+    messages = [SystemMessage(content=get_system_prompt())]
+    
     for entry in chat_history:
         role = entry.get("role", "")
         content = entry.get("content", "")
@@ -168,31 +118,62 @@ def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = 
         elif role == "assistant":
             messages.append(AIMessage(content=content))
     
-    # Füge die aktuelle Anfrage hinzu
-    messages.append(HumanMessage(content=query_text))
+    # Anfrage mit Kontext
+    user_message = f"""Frage: {query_text}
 
-    ### hier geschieht die Magie
-    response = agent_graph.invoke({"messages": messages})
-    ####################################
+Relevanter Kontext:
+{context}
 
-    response_text = ""
-    for message in reversed(response.get("messages", [])):
-        if isinstance(message, AIMessage):
-            response_text = message.content
-            break
-    if not response_text:
-        response_text = "No response from model."
+Beantworte die Frage. Nutze den Kontext NUR, wenn er zur Frage passt. Wenn der Kontext nicht relevant ist, ignoriere ihn."""
+    
+    messages.append(HumanMessage(content=user_message))
 
+    # Abfrage
+    response = model.invoke(messages)
+    response_text = response.content if response.content else "No response from model."
+
+    # Prüfe ob der Kontext in der Antwort verwendet wurde
+    # Einfache Heuristik: Wenn Antwort sehr kurz und generisch, wurde Kontext wahrscheinlich nicht verwendet
     sources = []
-    seen = set()
-    for doc in retrieved_docs:
-        source_id = doc.metadata.get("id", None)
-        if source_id and source_id not in seen:
-            seen.add(source_id)
-            sources.append(source_id)
-    formatted_response = f"Response: {response_text}\nSources: {sources}"
-    print(formatted_response)
+    if _has_used_context(response_text, query_text):
+        seen = set()
+        for doc in docs:
+            source_id = doc.metadata.get("id", None)
+            if source_id and source_id not in seen:
+                seen.add(source_id)
+                sources.append(source_id)
+    
+    print(f"Response: {response_text}\nSources: {sources}")
     return response_text, sources
+
+
+def _has_used_context(response: str, query: str) -> bool:
+    """Heuristik: Prüft ob der Kontext wahrscheinlich verwendet wurde."""
+    # Wenn die Antwort sehr generisch/kurz ist, wurde wahrscheinlich kein Kontext verwendet
+    generic_responses = [
+        "wie geht es dir",
+        "ich bin ein ernährungsberater",
+        "ich bin ein chatbot",
+        "wie kann ich dir helfen",
+        "wer bist du",
+        "was kannst du",
+        "hallo",
+        "guten tag",
+        "es geht mir gut",
+        "danke der nachfrage",
+    ]
+    
+    # Wenn Frage sehr generisch ist
+    query_lower = query.lower()
+    for generic in generic_responses:
+        if generic in query_lower:
+            return False
+    
+    # Wenn Antwort zu kurz, war wahrscheinlich kein Kontext nötig
+    if len(response) < 100:
+        return False
+    
+    return True
 
 
 def _extract_pdf_sources(sources: list[str]) -> list[str]:
@@ -205,7 +186,6 @@ def _extract_pdf_sources(sources: list[str]) -> list[str]:
 def _load_prompts_from_file(path: str) -> list[str]:
     with open(path, "r", encoding="utf-8") as handle:
         content = handle.read()
-
     blocks = [block.strip() for block in re.split(r"\n\s*\n", content)]
     return [block for block in blocks if block]
 
