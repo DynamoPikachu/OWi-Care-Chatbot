@@ -1,7 +1,51 @@
-# Wichtige Regeln für den Chatbot
+═══════════════════════════════════════════════════════════
+WICHTIGE REGELN FÜR DEN CHATBOT
+═══════════════════════════════════════════════════════════
 
-- Kinder dürfen niemals verkauft, getauscht oder verschenkt werden.
-- In Deutschland erreicht man den Notruf unter 112.
-- Bei lebensbedrohlichen Situationen immer sofort den Notruf wählen.
-- Medizinische Ratschläge ersetzen keine ärztliche Beratung.
-- Bei Verdacht auf Kindesmisshandlung oder -vernachlässigung müssen die zuständigen Behörden informiert werden.
+KRITISCHE SICHERHEITSREGELN
+───────────────────────────────────────────────────────────
+• Kinder dürfen niemals verkauft, getauscht oder verschenkt werden.
+• Bei lebensbedrohlichen Situationen IMMER sofort den Notruf wählen.
+• Medizinische Ratschläge ersetzen NIEMALS eine ärztliche Beratung.
+• Bei Verdacht auf Kindesmisshandlung oder -vernachlässigung müssen 
+  die zuständigen Behörden informiert werden.
+
+
+NOTFALL-TELEFONNUMMERN (DEUTSCHLAND)
+───────────────────────────────────────────────────────────
+Polizei und Gendarmerie ........................... 110
+Rettungsdienst und Feuerwehr ...................... 112
+Telefonseelsorge .................................. 0800 111 0 111
+Telefonseelsorge .................................. 116 123
+Nummer gegen Kummer (Kinder & Jugendliche) ........ 116 111
+
+
+MEDIZINISCHE ABKÜRZUNGEN
+───────────────────────────────────────────────────────────
+i.v.    = Intravenös (Medikament direkt in die Blutbahn)
+s.c.    = Subcutan (Injektion unter die Haut)
+i.m.    = Intramuskulär (Injektion in einen Muskel)
+
+RD      = Rettungsdienst
+RTW     = Rettungswagen
+KTW     = Krankentransportwagen
+KKH     = Krankenhaus
+UK      = Unfallkasse
+LNA     = Leitender Notarzt
+NA      = Notarzt
+RS      = Rettungssanitäter
+NFS     = Notfallsanitäter
+
+ABCDE-Schema = Standardisiertes Bewertungsschema des Rettungsdienstes 
+               zur Einschätzung von Patienten
+
+
+VERFÜGBARKEIT VON FACHPERSONEN
+───────────────────────────────────────────────────────────
+Hausärzte, Ernährungsberater und reguläre Ansprechpartner:
+  • Unter der Woche: Erreichbar während Sprechzeiten
+  • Am Wochenende: NICHT erreichbar
+    → Immer auf Rettungsdienst oder Notaufnahme verweisen
+
+═══════════════════════════════════════════════════════════
+

@@ -62,13 +62,20 @@ def main():
     parser.add_argument("query_text", nargs="?", type=str, help="The query text.")
     parser.add_argument("--input-file", type=str)
     parser.add_argument("--output-file", type=str)
+    parser.add_argument("--iterations", type=int, default=1, 
+                        help="Anzahl der Durchläufe (nur mit --input-file und --output-file)")
     parser.add_argument("--history", type=str, default="[]")
     args = parser.parse_args()
 
     if args.input_file:
         if not args.output_file:
             parser.error("--output-file ist erforderlich, wenn --input-file verwendet wird.")
-        process_prompt_file(args.input_file, args.output_file, USE_LM_STUDIO)
+        
+        # Mehrfache Durchläufe
+        if args.iterations > 1:
+            process_prompt_file_multiple(args.input_file, args.output_file, USE_LM_STUDIO, args.iterations)
+        else:
+            process_prompt_file(args.input_file, args.output_file, USE_LM_STUDIO)
         return
 
     if not args.query_text:
@@ -210,6 +217,69 @@ def process_prompt_file(input_path: str, output_path: str, use_lm_studio: bool =
                 handle.write(f"\n(Quellen: {', '.join(pdf_sources)})\n")
             handle.write(f"\nDauer: {duration}s\n")
             handle.write("─" * 60 + "\n\n")
+
+
+def _get_output_filename(base_path: str, iteration: int) -> str:
+    """Erstellt einen nummerierten Dateinamen."""
+    # Splitte Pfad und Dateiname
+    dir_path = os.path.dirname(base_path)
+    filename = os.path.basename(base_path)
+    
+    # Trenne Name und Extension
+    if "." in filename:
+        name, ext = filename.rsplit(".", 1)
+        numbered_filename = f"{name}_{iteration}.{ext}"
+    else:
+        numbered_filename = f"{filename}_{iteration}"
+    
+    # Wenn kein Directory angegeben, nutze aktuelles Directory
+    if not dir_path:
+        return numbered_filename
+    
+    return os.path.join(dir_path, numbered_filename)
+
+
+def process_prompt_file_multiple(input_path: str, output_path: str, use_lm_studio: bool = True, iterations: int = 1):
+    """Führt den Prompt-Durchlauf mehrfach aus und schreibt Output-Dateien sortiert nach Fragen."""
+    prompts = _load_prompts_from_file(input_path)
+    if not prompts:
+        raise ValueError(f"Keine Prompts in {input_path} gefunden.")
+    
+    # Sammle alle Ergebnisse: {prompt: [(response, sources, duration, iteration), ...]}
+    all_results = {prompt: [] for prompt in prompts}
+    
+    # Führe alle Durchläufe durch
+    for iteration in range(1, iterations + 1):
+        print(f"Durchlauf {iteration}/{iterations}...")
+        for prompt in prompts:
+            start_time = time.time()
+            response_text, sources = query_rag(prompt, use_lm_studio)
+            duration = int(time.time() - start_time)
+            pdf_sources = _extract_pdf_sources(sources)
+            
+            all_results[prompt].append((response_text, pdf_sources, duration, iteration))
+        print(f"Durchlauf {iteration} abgeschlossen.\n")
+    
+    # Schreibe Output-Dateien: Eine Datei pro Frage
+    for prompt_idx, prompt in enumerate(prompts, 1):
+        numbered_output = _get_output_filename(output_path, prompt_idx)
+        print(f"Schreibe Ergebnisse für Frage {prompt_idx} in {numbered_output}")
+        
+        with open(numbered_output, "w", encoding="utf-8") as handle:
+            handle.write(f"Frage {prompt_idx}:\n")
+            handle.write(f"{prompt}\n")
+            handle.write("=" * 60 + "\n\n")
+            
+            # Schreibe alle Durchläufe für diese Frage
+            for response_text, pdf_sources, duration, iteration in all_results[prompt]:
+                handle.write(f"Durchlauf {iteration}:\n")
+                handle.write("─" * 60 + "\n")
+                handle.write(f"🤖 Assistant:\n")
+                handle.write(f"{response_text}\n")
+                if pdf_sources:
+                    handle.write(f"\n(Quellen: {', '.join(pdf_sources)})\n")
+                handle.write(f"Dauer: {duration}s\n")
+                handle.write("─" * 60 + "\n\n")
 
 
 if __name__ == "__main__":
