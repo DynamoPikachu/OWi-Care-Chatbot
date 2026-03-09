@@ -1,0 +1,110 @@
+Frage 9:
+Gibt es Telefonnummern, an die ich mich mit meinen Problemen wenden kann?
+============================================================
+
+Durchlauf 1:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt Hilfsdienste und Fachleute, an die Sie sich wenden können. Ihr Kindernähropfer kann ein wichtiger Kontakt sein, aber bei spezifischen Problemen oder Notfällen sollten Sie den Hausarzt, einen Ernährungsberater oder das nächste Krankenhaus konsultieren. Für dringende Angelegenheiten rufen Sie den Notruf 112 an.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 14s
+────────────────────────────────────────────────────────────
+
+Durchlauf 2:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt verschiedene Telefonnummern und Ansprechpartner, an die Sie sich wenden können:
+
+- Im Notfall wählen Sie bitte **112** (Rettungsdienst).
+- Für Unterstützung und Rat außerhalb von Notfällen können Sie das Kinderkrankenhaus der Kliniken der Stadt Köln kontaktieren oder den Hausarzt Ihrer Wahl bei Sprechzeiten fragen. 
+- Für spezielle Fragen zur Ernährung und Sondenversorgung steht Prof. Dr. med. Jost Kaufmann zur Verfügung (Telefon: 0221 – 8907 – 15199, E-Mail: jost.kaufmann@uni-wh.de).
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 20s
+────────────────────────────────────────────────────────────
+
+Durchlauf 3:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt spezielle Telefonnummern und Kontaktdaten für Unterstützung bei HPN-Komplikationen. Dein Behandelteam sollte dir eine Liste mit 24/7-Support-Daten zur Verfügung stellen, einschließlich einer Notrufnummer. Wenn du diese Informationen benötigst oder sie aktualisiert haben möchtest, richte dich an die Ernährungsstützstation (NST) oder das zuständige Krankenhaus.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 4:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt spezielle Telefonnummern und Unterstützungssysteme für Eltern, deren Kinder eine Zentralvenösplazierung (ZVP) oder eine Heimische Ernährungseinrichtung (HEE) benötigen. Sprechen Sie mit Ihrem Ernährungsberater oder dem Pflegepersonal im Krankenhaus, um Kontaktdaten für einen rund um die Uhr einsetzbaren Support zu erhalten. Im Notfall wenden Sie sich an den Rettungsdienst unter der Nummer 112.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 5:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es gibt verschiedene Möglichkeiten für Hilfe und Beratung bei Ernährungsproblemen und Sondenentwöhnung für Kinder. Dein Kindärzteteam oder der Ernährungsberater können gute Ratsgeber sein. Zusätzlich kannst du dich an die Notaufnahme deines Krankenhauses wenden, wenn es sich um dringende Probleme handelt. Für nicht akute Fragen empfehle ich die Kontaktaufnahme mit Prof. Dr. med. Jost Kaufmann oder das Leitliniensekretariat der DGAI, deren Kontaktinformationen du im angegebenen Kontext findest.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 19s
+────────────────────────────────────────────────────────────
+
+Durchlauf 6:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt spezielle Telefonnummern und Support-Systeme für Eltern mit Kindern, die eine Sonde benötigen. In Notfällen rufe bitte den Rettungsdienst unter 112 an. Für nicht akute Fragen empfiehlt es sich, Kontakt zu deinem Hausarzt oder zur Ernährungsberatungsstelle aufzunehmen. Im Zweifelsfall können auch das zuständige Krankenhaus oder Notaufnahme als Unterstützung dienen. Hier erhältst du spezialisierte Hilfe und Beratung rund um die Uhr.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 18s
+────────────────────────────────────────────────────────────
+
+Durchlauf 7:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt verschiedene Telefonnummern und Ansprechpartner, an die Sie sich wenden können:
+
+- Notfälle: Ruf sofort **112** (Rettungsdienst)
+- Für Ernährungsfragen oder Unterstützung bei HPN-Komplikationen kann Prof. Dr. med. Jost Kaufmann kontaktiert werden:
+  - Tel.: 0221 – 8907 – 15199
+  - E-Mail: jost.kaufmann@uni-wh.de
+
+Für weitere Unterstützung oder spezielle Fragen rufen Sie bitte den Hausarzt, einen Ernährungsberater oder das nächste Krankenhaus an.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 19s
+────────────────────────────────────────────────────────────
+
+Durchlauf 8:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt Hilfsdienste und Experten, denen Sie sich wenden können. Für spezifische Probleme mit Hauspipetten-Nahrungsergänzung (HPN) sollten Sie das nächstgelegene spezialisierte Zentrum oder das Notaufnahme-Team Ihres Krankenhauses kontaktieren. Die meisten Teams bieten 24-Stunden-Support an, um Komplikationen zu bewältigen und Rat in Bezug auf notwendige Maßnahmen zu geben. Sollten Sie spezifische Schwierigkeiten haben, können Sie auch Ihren Hausarzt oder einen Ernährungsberater für individuelle Unterstützung kontaktieren.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 21s
+────────────────────────────────────────────────────────────
+
+Durchlauf 9:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ja, es gibt spezielle Telefonnummern und Beratungsstellen für Eltern, die Unterstützung bei Problemen mit hämorhegaler Ernährung (HEE) oder parenteraler Ernährung (HPE) benötigen. Für dringende medizinische Probleme rufe den Notruf 112 an. Für allgemeine Fragen und Rat wenden sich Eltern am besten an ihren Hausärztlichen VersorgungsTeam (NST), der für solche Angelegenheiten verantwortlich ist, oder sie können direkt einen Ernährungsberater um Unterstützung bitten. Weitere Kontaktdaten finden Sie bei Prof. Dr. med. Jost Kaufmann im Kinderkrankenhaus der Kliniken der Stadt Köln gGmbH.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 22s
+────────────────────────────────────────────────────────────
+
+Durchlauf 10:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Natürlich gibt es verschiedene Telefonnummern, an die Sie sich wenden können:
+
+- Für medizinische Notfälle sofort den Notruf **112** wählen.
+- Für psychologische Unterstützung gibt es die Telefonseelsorge unter der Nummer **0800 111 0 111** oder **116 123**.
+
+Für spezielle Fragen zu Ihrer Kindheit und Ernährung können Sie sich auch an Ihren Hausarzt oder einen Ernährungsberater wenden. Wenn diese nicht erreichbar sind, kann das nächste Krankenhaus ein guter Ansprechpartner sein. Bei komplexen Fällen mit HPN (Heimparenteralnutrition) sollte eine fachkundige Beratung von Spezialisten wie dem **Kinderkrankenhaus der Kliniken der Stadt Köln** oder Prof. Dr. med. Jost Kaufmann in Betracht gezogen werden, die unter der Telefonnummer **0221 – 8907 – 15199** erreichbar sind.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 32s
+────────────────────────────────────────────────────────────
+

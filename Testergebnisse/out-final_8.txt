@@ -1,0 +1,94 @@
+Frage 8:
+Wo finde ich schnell Hilfe?
+============================================================
+
+Durchlauf 1:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Solltest du Hilfe bei medizinischen Notfällen oder dringenden Problemen benötigen, wende dich bitte sofort an den Rettungsdienst unter der Telefonnummer 112 oder gehe zur nächsten Notaufnahme. Für nicht akute Situationen kannst du deine Hausarztpraxis oder einen Ernährungsberater kontaktieren, die dir professionelle Unterstützung und Beratung bei speziellen Ernährungsfragen anbieten können.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 14s
+────────────────────────────────────────────────────────────
+
+Durchlauf 2:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe benötigen, kontaktieren Sie zunächst den Notruf 112 für lebensbedrohliche Situationen oder wenden sich an Ihren Hausarzt oder Ernährungsberater. Bei weniger dringlichen Fragen sind Hilfestellungen durch Pflegekräfte und spezialisierte Berater im Krankenhaus sehr hilfreich. Immer orientieren Sie sich an den Anweisungen der medizinischen Fachpersonen, die auf die besonderen Bedürfnisse Ihres Kindes eingeschworen sind.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 3:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe benötigen, sollten Sie zunächst den Notruf 112 wählen oder sich an Ihren Hausarzt wenden. Für spezifische medizinische Fragen und Beratung zur Ernährung und Sondenentwöhnung kontaktieren Sie einen erfahrteneren Ernährungsberater oder die entsprechende Abteilung Ihres Krankenhauses, der Ihnen Kontaktdaten für 24/7-Support geben kann.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 4:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe benötigen, kontaktieren Sie zunächst den Notruf (112) bei akuter Gefahr oder lebensbedrohlichen Situationen. Für weniger dringende Anfragen wenden Sie sich an Ihren Hausarzt oder einen Ernährungsberater. Im Zweifelsfall ist es ratsam, direkt mit dem Rettungsdienst zu sprechen, um die nötige Unterstützung zu erhalten.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 14s
+────────────────────────────────────────────────────────────
+
+Durchlauf 5:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie schnell Hilfe benötigen, rufen Sie unbedingt den Notruf 112 an oder bringen Sie Ihr Kind sofort in die nächste Notaufnahme. Für weniger akute Situationen können Sie Kontakt mit Ihrem Hausarzt oder einer Ernährungsberatungsstelle aufnehmen. Es ist wichtig, dass Fachkräfte bei besonderen Bedürfnissen Ihres Kindes beteiligt sind, um eine optimale Versorgung sicherzustellen.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 6:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe benötigen, sollten Sie zunächst den Notruf 112 wählen oder sich an einen Arzt wenden. Für allgemeine Fragen zu Ernährung und Gesundheit kann ein Ernährungsberater oder der Hausarzt beraten. Im Krankenhaus sind immer Kontaktmöglichkeiten für Notfälle und regelmäßige Versorgungen verfügbar.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 12s
+────────────────────────────────────────────────────────────
+
+Durchlauf 7:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie schnell Hilfe benötigen, rufen Sie im Zweifelsfall immer den Notruf (112) an. Für medizinische Beratung rund um die Uhr kann auch das Telefonauskunftszentrum Ihrer Krankenkasse oder der Tel.: 0800-1152335 (Mageddu-Hilfe) helfen.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 12s
+────────────────────────────────────────────────────────────
+
+Durchlauf 8:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe bei einem Notfall benötigen, rufen Sie sofort den Rettungsdienst (112) an. Für weniger akute Situationen wenden Sie sich an Ihren Hausarzt oder die Krankenklinik in Ihrer Nähe. Im Falle einer Sondenentwöhnung oder Ernährungsfragen können Sie einen Ernährungsberater für Kinder mit besonderen Bedürfnissen konsultieren.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 14s
+────────────────────────────────────────────────────────────
+
+Durchlauf 9:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe benötigen, wenden Sie sich bitte an Ihren Hausarzt oder eine Notfallstation im Krankenhaus, insbesondere bei akuten medizinischen Problemen. Für nicht lebensbedrohliche Fragen zur Ernährung und Versorgung Ihres Kindes empfehle ich regelmäßige Beratungen mit Ihrem Ernährungsberater und der Pflegecrew, die über spezifische Kontaktdaten verfügen sollten.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 10:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Wenn Sie Hilfe benötigen, kontaktieren Sie zunächst den Hausarzt oder rufen Sie im Notfall den Rettungsdienst unter der Telefonnummer 112 an. Für spezifische Fragen zur Ernährung und Sondenentwöhnung kann auch ein Ernährungsberater oder eine ambulante Pflegefachkraft beratend eingebunden werden.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, AWMF-online_2024_S2k_Interdisziplinaere-Versorgung-Kinder-Fremdkoerperaspiration-Fremdkoerperingestion.pdf)
+Dauer: 14s
+────────────────────────────────────────────────────────────
+

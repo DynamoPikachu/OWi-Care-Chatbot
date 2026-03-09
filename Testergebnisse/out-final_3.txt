@@ -1,0 +1,94 @@
+Frage 3:
+Kann ich den Sondenschlauch selbst tauschen?
+============================================================
+
+Durchlauf 1:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Sondenschlauch sollte in der Regel von einem qualifizierten Fachkrankenpfleger oder einem Arzt ausgetauscht werden, um eine hygienische und sicher durchgeführte Prozedur zu gewährleisten. Selbsttausch kann Risiken wie Infektionen oder Verletzungen mit sich bringen. Wenn du unbedingt einen Sondenwechsel selbst durchführen möchtest, sollte dies unter Anleitung eines medizinischen Fachpersonals gelernt und kontrolliert werden.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 2:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Austausch einer Sondenschlauch sollte von qualifiziertem Pflegepersonal oder im Krankenhaus durchgeführt werden, um Sicherheit und Hygiene zu gewährleisten. Selbstständiger Austausch kann Risiken wie Infektionen oder Verschlüsse verursachen.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 10s
+────────────────────────────────────────────────────────────
+
+Durchlauf 3:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Die Austauschaktion einer Sondenkappe oder eines Ballonverschlusses kann oft zuhause durchgeführt werden, nachdem Sie von einem Pflegefachpersonal instruiert worden sind. Allerdings sollten komplexe Sondenwechsel und erneute Platzierungen grundsätzlich in medizinischer Überwachung erfolgen, um eventuelle Komplikationen frühzeitig zu erkennen und anzugehen. Bitte konsultieren Sie Ihren Arzt oder Ihre Pflegeberaterin für spezifische Anweisungen zum Austausch Ihrer Sondenart.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 4:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Nein, du kannst den Sondenschlauch nicht selbst tauschen, insbesondere nicht bei einer ersten Auswechslung. Ein Austausch sollte von qualifiziertem medizinischem Personal durchgeführt werden, entweder im Krankenhaus oder zuhause durch einen Pflegeberater, abhängig von der Art und dem Zustand der Sonde. Bei Problemen wie Sondenbruch, Okklusion oder Dislokation ist sofortige ärztliche Beratung erforderlich.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 5:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Austausch einer Ersatzsonde vom Ballontyp sollte in der Regel von qualifizierten medizinischen Fachkräften durchgeführt werden, um Komplikationen zu vermeiden und die Hygienebest Practices einzuhalten. Selbstständiger Sondenwechsel ist nur nach gründlicher Schulung und mit der Sicherheit des Kindes im Auge zu betrachten möglich. Bitte konsultieren Sie Ihren Arzt oder eine Pflegekraft, um sicherzustellen, dass dies korrekt erfolgt.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 6:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Nein, du solltest einen Sondenwechsel bei einem Button-Schlauch nicht selbst durchführen, da dies eine kompetente medizinische Maßnahme ist. Der erste Austausch sollte im Krankenhaus erfolgen, danach kann es in einer häuslichen Pflegeunterstützung oder von einer qualifizierten Krankenschwester durchgeführt werden. Selbstständige Sondenwechsel sollten nur durch Personen durchgeführt werden, die speziell dafür geschult sind und umfangreiche Erfahrung haben. Bitte konsultiere einen medizinischen Fachmann zur Sicherheit.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 17s
+────────────────────────────────────────────────────────────
+
+Durchlauf 7:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Sondenwechsel sollte in der Regel von qualifiziertem Personal durchgeführt werden. Selbstständiger Austausch kann zu Komplikationen führen. Bitte konsultieren Sie einen medizinischen Fachmann für den Wechsel, um sicherzustellen, dass alles korrekt und hygienisch erfolgt.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 11s
+────────────────────────────────────────────────────────────
+
+Durchlauf 8:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Austausch einer Sondenschlauch sollte in der Regel von qualifiziertem medizinischem Personal durchgeführt werden, um eventuelle Komplikationen zu vermeiden und hygienische Standards einzuhalten. Es sei aber beachtet, dass Ersatzsonden vom Ballontyp gelegentlich für den Blindersatz verwendet werden können. Allerdings sollten regelmäßige Austauschzyklen nur nach medizinischer Begutachtung erfolgen. Bei Anzeichen von Sondenbruch, Okklusion oder Verschlechterung des Materials ist ein sofortiger Austausch im Krankenhaus notwendig.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 19s
+────────────────────────────────────────────────────────────
+
+Durchlauf 9:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Austausch einer Sondenschlauch sollte in der Regel von einem qualifizierten Pflege- oder medizinischen Fachpersonal durchgeführt werden. Selbstständiger Sondenwechsel kann zu Komplikationen führen. Wenn Sie den Austausch selbst durchführen möchten, sprechen Sie unbedingt mit Ihrem Arzt oder einer Krankenschwester darüber und lassen sich vorab gründlich ausbilden.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 13s
+────────────────────────────────────────────────────────────
+
+Durchlauf 10:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Der Austausch einer Sondenschaufel oder eines Ballons sollte in der Regel von einem qualifizierten Pflegepersonal durchgeführt werden, um Verunreinigungen und Komplikationen zu vermeiden. Selbstständiger Austausch ist nur dann möglich, wenn Sie gründlich instruiert und geschult wurden. Andernfalls rate ich davon ab und empfehle einen ärztlichen Berater oder eine qualifizierte Krankenschwester.
+
+(Quellen: AWMF-online_2024_Heimenterale-heimparenterale-Ernaehrung.pdf, Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+

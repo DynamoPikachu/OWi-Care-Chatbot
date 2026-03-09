@@ -1,0 +1,94 @@
+Frage 18:
+Kann ich meinem Kind die Sonde heute ziehen?
+============================================================
+
+Durchlauf 1:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, einen ärztlichen Rat einzuholen, bevor Sie die Sonde entfernen. Der Arzt wird bestimmen, ob Ihr Kind bereit und in der Lage ist, seine Nahrungsaufnahme selbst zu regulieren, basierend auf dessen individueller Entwicklung und Gesundheitszustand.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 12s
+────────────────────────────────────────────────────────────
+
+Durchlauf 2:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, vor dem Entfernen der Sonde mit dem Ernährungs- und Medizinerat zu sprechen. Ohne medizinische Erlaubnis kann das Entfernen der Sonde gesundheitliche Risiken für Ihr Kind bergen. Bitte wenden Sie sich an Ihren behandelnden Arzt oder Ernährungsberater, um sicherzustellen, dass Ihr Kind bereit ist und alle notwendigen Vorbereitungsschritte ergriffen wurden.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 3:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist sehr wichtig, vor dem Entfernen der Sonde einen Arzt oder Therapeuten zu konsultieren. Diese Fachpersonen können sicherstellen, dass Ihr Kind im Moment bereit und in der Lage ist, seinen Nährstoffbedarf ohne Sonden zu erfüllen. Bitte sprechen Sie mit Ihrem Behandlungsteam, um sicherzustellen, dass alle Voraussetzungen für eine erfolgreiche Entwöhnung gegeben sind.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 15s
+────────────────────────────────────────────────────────────
+
+Durchlauf 4:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, mit dem therapeutischen Team und dem Arzt zu sprechen, bevor Sie die Sonde entfernen, um sicherzustellen, dass Ihr Kind bereit ist, ohne Sondenvorsorge auszukommen. Achten Sie darauf, ob das Kind sich selbstständig ernähren kann und ob alle notwendigen therapeutischen Maßnahmen abgeschlossen wurden, wie z.B. logopädische Behandlung für mögliche oralmotorische Störungen.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 5:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, vor dem Entfernen der Sonde mit dem behandelnden Arzt oder Ernährungsberater zu sprechen. Sie sollten sicherstellen, dass Ihr Kind bereit und stabil genug für diesen Schritt ist, um eine gesunde Entwicklung weiterzuführen.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 11s
+────────────────────────────────────────────────────────────
+
+Durchlauf 6:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, mit dem Arzt oder Therapeuten zu sprechen, bevor Sie die Sonde ziehen, um sicherzustellen, dass Ihr Kind bereit dafür ist und alle notwendigen Voraussetzungen erfüllt sind. Sie sollten auch über mögliche Unterstützung im Entwöhnungsprozess sprechen.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 12s
+────────────────────────────────────────────────────────────
+
+Durchlauf 7:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, sich gründlich mit dem Arzt oder der Ernährungsberaterin zu beraten, bevor Sie die Sonde entfernen. Ihr Kind sollte in der Lage sein, ausreichend Nahrung und Flüssigkeit oral aufzunehmen und keine medizinischen Kontraindikationen vorliegen dürfen. Bitte stellen Sie sicher, dass alle Therapeuten und Ärzte einverstanden sind und das Kind gut vorbereitet ist, bevor Sie die Sonde ziehen.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 17s
+────────────────────────────────────────────────────────────
+
+Durchlauf 8:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, keine Eile mit der Sondenentwöhnung zu haben und sicherzustellen, dass dein Kind bereit dafür ist. Vor dem Entfernen der Sonde sollten medizinische Experten wie Ernährungsberater oder Logopädin bestätigen, dass das Kind in der Lage ist, Nahrung oral aufzunehmen und seine Bedürfnisse selbst zu regulieren. Bitte konsultiere deine Ärzte und Therapeuten, um sicherzustellen, dass es für dein Kind der richtige Zeitpunkt ist.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 18s
+────────────────────────────────────────────────────────────
+
+Durchlauf 9:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Ziehen Sie die Sonde heute nicht ohne ärztliche Zustimmung und umfassende Unterstützung ab. Es ist wichtig, sicherzustellen, dass Ihr Kind physiologisch und psychologisch bereit für den Schritt ist und eine angemessene Ersatzversorgung durch Oralernaehrung sichergestellt ist. Bitte konsultieren Sie Ihren Arzt oder Therapeuten, bevor Sie Entscheidungen treffen.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 10:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Es ist wichtig, vor dem Entfernen der Sonde mit dem Arzt oder dem Ernährungsberater zu sprechen. Sie sollten sicherstellen, dass Ihr Kind zu diesem Zeitpunkt bereit ist und alle notwendigen Maßnahmen ergriffen wurden, um eine erfolgreiche Sondenentwöhnung zu gewährleisten. Bitte beraten Sie sich mit Ihrem medizinischen Team, bevor Sie einen solchen Schritt unternehmen.
+
+(Quellen: Forum-Logopädie_2019_Wilken_Sondenentwoehnung_in_der_fruehen_Kindheit.pdf, Springer_2001_Sondenentwöhnung_in_der_frühen_Kindheit.pdf, Springer_2016_Entwöhnung_von_langfristiger_Sondenernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+

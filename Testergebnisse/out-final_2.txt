@@ -1,0 +1,94 @@
+Frage 2:
+Wie kann ich die Sonde meines Kindes richtig pflegen?
+============================================================
+
+Durchlauf 1:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Um die Sonde Ihres Kindes korrekt zu pflegen, sollten Sie täglich gründlich die Umgebungshaut reinigen und desinfizieren. Verwenden Sie dazu pH-hautneutrale Desinfektionsmittel und wechseln Sie regelmäßig das Pflaster oder den Verband, um eine feuchte Kammer zu vermeiden und Entzündungen vorzubeugen. Achten Sie auf Rötungen oder Wundsekret als Anzeichen von Infektionen. Bei einer transnasalen Sonde wechseln Sie täglich das Nasensekretumsatz und halten die Schleimhaut feucht, um Druckulzera zu vermeiden.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 19s
+────────────────────────────────────────────────────────────
+
+Durchlauf 2:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Die Pflege einer Sonden sollte gründlich und hygienisch durchgeführt werden. Reinigen Sie regelmäßig die Umgebung der Einstichstelle mit pH-hautneutraler Seife und Wasser, um Rötungen oder Wundsekret zu vermeiden. Platzieren Sie eine Schlitzkompressen zwischen Haut und Halteplatte, um Feuchtigkeit abzufangen. Wechseln Sie das Pflaster täglich bei einer nasalen Sonde und nach Bedarf bei einer perkutanen Sonde. Achten Sie auch auf regelmäßige Nasenpflege zur Aufrechterhaltung der Schleimhaut.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 17s
+────────────────────────────────────────────────────────────
+
+Durchlauf 3:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Die Pflege einer Sonden sollte gründlich und hygienisch erfolgen. Reinigen Sie die Einstichstelle täglich mit Wasser und pH-hautneutraler Seife, um Entzündungen zu vermeiden. Platzieren Sie eine Schlitzkompressen zwischen Haut und Halteplatte, um Feuchtigkeit abzufangen. Wechseln Sie das Pflaster täglich bei transnasalen Sonden und regelmäßig bei perkutanen Sonnen nach Bedarf. Achten Sie auf Rötungen oder Sekrete als Warnsignale für mögliche Entzündungen.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 4:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Die Sondenpflege erfolgt hauptsächlich durch regelmäßige Reinigungen und Überprüfungen auf Entzündungszeichen. Bei einer transnasalen Sonde wechseln Sie täglich das fixierende Pflaster und reinigen die Haut darunter mit Wasser und pH-hautneutraler Seife. Platzieren Sie eine Schlitzkompresse zwischen Haut und Halteplatte, um feuchte Kammern zu vermeiden. Bei einer perkutanen Sonde wechseln Sie den Verband täglich im ersten Wochenabschnitt und später nach Bedarf. Achten Sie regelmäßig auf Rötungen oder Wundsekret um die Einstichstelle.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 19s
+────────────────────────────────────────────────────────────
+
+Durchlauf 5:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Um die Sonde Ihres Kindes korrekt zu pflegen, sollten Sie täglich die Haut um die Einstichstelle reinigen und pflastern wechseln, um eine feuchte Kammer zu vermeiden. Reinigen Sie die Haut mit Wasser und pH-neutraler Seife und achten Sie auf Entzündungszeichen wie Rötungen oder Wundsekret. Stellen Sie sicher, dass eine Schlitzkompressen zwischen Haut und Halteplatte platziert wird, um mechanische Reibung zu minimieren.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 16s
+────────────────────────────────────────────────────────────
+
+Durchlauf 6:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Die Pflege einer Sondenspeisung beginnt mit sauberer Handhygiene und regelmäßiger Reinigung des Eintrittsgebietes mit pH-hautneutraler Seife sowie Wasser. Bei einer transnasalen Sonde wechseln Sie täglich das Fixierpflaster und reinigen die Haut darunter, während eine perkutane Sonde im Anfangsphase täglich verbandgewechselt wird, später nach Bedarf. Stellen Sie sicher, dass keine feuchten Bereiche zwischen Haut und Halteplatte entstehen, um Entzündungen zu vermeiden. Achten Sie außerdem auf Rötungen oder Wundsekret am Einstichpunkt als Anzeichen von Infektionen.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 20s
+────────────────────────────────────────────────────────────
+
+Durchlauf 7:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Um die Sonde Ihres Kindes korrekt zu pflegen, verwenden Sie täglich Hand- und Hautdesinfektionsmittel sowie Verbandmaterial. Bei einer transnasalen Sonde wechseln Sie das Fixierpflaster täglich und reinigen die darunterliegende Haut gründlich. Achten Sie auch auf eine gute Mundpflege und beobachten Sie nach Entzündungszeichen wie Rötungen oder Wundsekret um die Einstichstelle.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 14s
+────────────────────────────────────────────────────────────
+
+Durchlauf 8:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Die Pflege der Sondeneinstichstelle ist entscheidend für das Wohlbefinden Ihres Kindes. Reinigen Sie die Haut um die Einstichstelle täglich mit Wasser und pH-hautneutraler Seife und achten Sie darauf, keine feuchte Kammer zu erzeugen, indem Sie eine Schlitzkompresse zwischen Haut und Halteplatte platzieren. Wechseln Sie das Pflaster täglicht bei einer transnasalen Sonde und regelmäßig bei einer perkutanen Sonde nach Bedarf. Achten Sie stets auf Entzündungszeichen wie Rötungen oder Wundsekret und befeuchten Sie die Schleimhaut, um Unwohlsein zu vermeiden.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 22s
+────────────────────────────────────────────────────────────
+
+Durchlauf 9:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Um die Sonde Ihres Kindes korrekt zu pflegen, sollten Sie täglich die Haut um den Einstichpunkt reinigen und pflastern wechseln. Bei einer transnasalen Sonde bedeutet dies das tägliche Reinigen der Haut unter dem Pflaster mit Wasser und pH-hautneutraler Seife sowie das Platzieren einer Schlitzkompressionsbandage, um eine feuchte Kammer zu vermeiden. Achten Sie stets auf Entzündungszeichen wie Rötungen oder Wundsekret und passen Sie die Pflege gegebenfalls an.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 17s
+────────────────────────────────────────────────────────────
+
+Durchlauf 10:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+Um die Sonde Ihres Kindes richtig zu pflegen, sollten Sie täglich die Haut um die Einstichstelle reinigen und pflegen, wobei Sie pH-hautneutrale Produkte verwenden sollten. Achten Sie darauf, eine Schlitzkompressen zwischen der Haut und der Halteplatte zu platzieren, um eine feuchte Kammer zu vermeiden. Stellen Sie sicher, dass das Pflaster täglich gewechselt wird und achten Sie auf Entzündungszeichen wie Rötungen oder Wundsekret.
+
+(Quellen: Anika_Richter_Pädiatrische-Pflege-Kinder-und-Sondenernährung.pdf, PflegePraxis_2024_Kritisch_kranke_Krinder_richtig_ernähren.pdf, Tatjana-Brückner_2026_Enterale Ernährung.pdf)
+Dauer: 18s
+────────────────────────────────────────────────────────────
+
