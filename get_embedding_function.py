@@ -31,6 +31,7 @@ class LMStudioEmbeddings(OpenAIEmbeddings):
 
 
 def get_embedding_function(platform: str | None = None):
+    # TODO auch hier müsst ihr nochmal drüberschauen, ob die Schnittstelle euch taugt
     normalized = (platform or "lm-studio").lower()
     if normalized in {"lm-studio", "lmstudio", "openai"}:
         api_base = os.getenv("LMSTUDIO_API_BASE", "http://localhost:1234/v1")

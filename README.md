@@ -148,3 +148,11 @@ Durchlauf 2:
 ...
 ```
 
+### Test-Konfiguration
+
+Die bisherigen Tests wurden mit folgenden Modellen durchgeführt:
+- **Chat-Modell:** `qwen2.5-14b-instruct`
+- **Embedding-Modell:** `text-embedding-bge-m3`
+
+Diese Modelle können in den Umgebungsvariablen angepasst werden (siehe [Konfiguration](#%EF%B8%8F-konfiguration)).
+

@@ -56,7 +56,8 @@ def get_system_prompt() -> str:
 
 
 def main():
-    USE_LM_STUDIO = True
+    # TODO hier müsstet ihr nochmal schauen, ob das die von euch verwendete API ist
+    USE_OPENAI_API = True
 
     parser = argparse.ArgumentParser()
     parser.add_argument("query_text", nargs="?", type=str, help="The query text.")
@@ -73,9 +74,9 @@ def main():
         
         # Mehrfache Durchläufe
         if args.iterations > 1:
-            process_prompt_file_multiple(args.input_file, args.output_file, USE_LM_STUDIO, args.iterations)
+            process_prompt_file_multiple(args.input_file, args.output_file, USE_OPENAI_API, args.iterations)
         else:
-            process_prompt_file(args.input_file, args.output_file, USE_LM_STUDIO)
+            process_prompt_file(args.input_file, args.output_file, USE_OPENAI_API)
         return
 
     if not args.query_text:
@@ -86,14 +87,15 @@ def main():
     except json.JSONDecodeError:
         chat_history = []
 
-    query_rag(args.query_text, USE_LM_STUDIO, chat_history=chat_history)
+    query_rag(args.query_text, USE_OPENAI_API, chat_history=chat_history)
 
 
-def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = None):
+def query_rag(query_text: str, use_openai_api: bool = True, chat_history: list = None):
     if chat_history is None:
         chat_history = []
     
-    embedding_platform = "lm-studio" if use_lm_studio else "ollama"
+    # TODO das hier müsste auch noch angepasst werden
+    embedding_platform = "lm-studio" if use_openai_api else "ollama"
     embedding_function = get_embedding_function(embedding_platform)
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
@@ -102,17 +104,18 @@ def query_rag(query_text: str, use_lm_studio: bool = True, chat_history: list = 
     context = "\n\n---\n\n".join(doc.page_content for doc in docs)
 
     # Erstelle Model
-    if use_lm_studio:
+    if use_openai_api: # TODO hier sind eigentlich die environment Variablen ausreichend, aber die defaults könntet ihr auch anpassen
         from langchain_openai import ChatOpenAI
         api_base = os.getenv("LMSTUDIO_API_BASE", "http://localhost:1234/v1")
         model_name = os.getenv("LMSTUDIO_CHAT_MODEL", "qwen2.5-14b-instruct")
+        api_key = os.getenv("API_KEY", "lm-studio")
         model = ChatOpenAI(
             model=model_name,
             openai_api_base=api_base,
-            openai_api_key="lm-studio",
+            openai_api_key=api_key,
         )
     else:
-        model = ChatOllama(model="llama3.2:3b")
+        model = ChatOllama(model="llama3.2:3b") # TODO der Fall ist für euch wahrscheinlich auch nicht relevant
 
     # Baue Nachrichten auf
     messages = [SystemMessage(content=get_system_prompt())]
@@ -197,7 +200,7 @@ def _load_prompts_from_file(path: str) -> list[str]:
     return [block for block in blocks if block]
 
 
-def process_prompt_file(input_path: str, output_path: str, use_lm_studio: bool = True):
+def process_prompt_file(input_path: str, output_path: str, use_openai_api: bool = True):
     prompts = _load_prompts_from_file(input_path)
     if not prompts:
         raise ValueError(f"Keine Prompts in {input_path} gefunden.")
@@ -205,7 +208,7 @@ def process_prompt_file(input_path: str, output_path: str, use_lm_studio: bool =
     with open(output_path, "w", encoding="utf-8") as handle:
         for prompt in prompts:
             start_time = time.time()
-            response_text, sources = query_rag(prompt, use_lm_studio)
+            response_text, sources = query_rag(prompt, use_openai_api)
             duration = int(time.time() - start_time)
             pdf_sources = _extract_pdf_sources(sources)
 
@@ -239,7 +242,7 @@ def _get_output_filename(base_path: str, iteration: int) -> str:
     return os.path.join(dir_path, numbered_filename)
 
 
-def process_prompt_file_multiple(input_path: str, output_path: str, use_lm_studio: bool = True, iterations: int = 1):
+def process_prompt_file_multiple(input_path: str, output_path: str, use_openai_api: bool = True, iterations: int = 1):
     """Führt den Prompt-Durchlauf mehrfach aus und schreibt Output-Dateien sortiert nach Fragen."""
     prompts = _load_prompts_from_file(input_path)
     if not prompts:
@@ -253,7 +256,7 @@ def process_prompt_file_multiple(input_path: str, output_path: str, use_lm_studi
         print(f"Durchlauf {iteration}/{iterations}...")
         for prompt in prompts:
             start_time = time.time()
-            response_text, sources = query_rag(prompt, use_lm_studio)
+            response_text, sources = query_rag(prompt, use_openai_api)
             duration = int(time.time() - start_time)
             pdf_sources = _extract_pdf_sources(sources)
             

@@ -168,6 +168,7 @@ class RAGGui(tk.Tk):
                 errors="replace",
             )
             output = (result.stdout or "") + (result.stderr or "")
+            # TODO an sich sollte eure Schnittstelle das Format beibehalten, aber wenn es in gui fehlschlägt dann tendenziell hier
 
             response, sources = self._parse_output(output)
 
