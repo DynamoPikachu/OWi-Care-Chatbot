@@ -85,4 +85,66 @@ python gui.py                # GUI starten
    Oder mit Reset:
    ```bash
    python populate_database.py --reset
-   
+   ```
+
+## 🧪 Testen
+
+### Einzelne Frage testen
+
+```bash
+python query_data.py "Was ist Sondenentwöhnung?"
+```
+
+### Mehrere Fragen aus Datei testen
+
+Erstelle eine `testprompts.txt` Datei mit Fragen (durch Leerzeilen getrennt):
+```
+Was ist Sondenentwöhnung?
+
+Wie lange dauert der Prozess?
+
+Welche Komplikationen können auftreten?
+```
+
+Dann ausführen:
+```bash
+python query_data.py --input-file testprompts.txt --output-file results.txt
+```
+
+Ergebnis: `results.txt` mit allen Antworten
+
+### Mehrfache Test-Durchläufe (für Konsistenz-Tests)
+
+Um zu prüfen, wie konsistent die Antworten des Chatbots sind, können mehrere Durchläufe durchgeführt werden:
+
+```bash
+python query_data.py --input-file testprompts.txt --output-file results.txt --iterations 5
+```
+
+Das erstellt:
+- `results_1.txt` - Frage 1 mit 5 verschiedenen Antworten
+- `results_2.txt` - Frage 2 mit 5 verschiedenen Antworten
+- `results_3.txt` - Frage 3 mit 5 verschiedenen Antworten
+
+Jede Datei zeigt alle Durchläufe für eine Frage, so dass du die Konsistenz der Antworten vergleichen kannst.
+
+**Beispiel-Output:**
+```
+Frage 1:
+Was ist Sondenentwöhnung?
+============================================================
+
+Durchlauf 1:
+────────────────────────────────────────────────────────────
+🤖 Assistant:
+[Antwort 1]
+(Quellen: datei.pdf)
+Dauer: 12s
+────────────────────────────────────────────────────────────
+
+Durchlauf 2:
+────────────────────────────────────────────────────────────
+[Antwort 2]
+...
+```
+
